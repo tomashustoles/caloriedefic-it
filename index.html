@@ -31,6 +31,7 @@
 <!-- Favicon: blue app-icon blob -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='230' fill='%231A36D6'/%3E%3Crect x='283' y='253' width='100' height='205' rx='50' fill='white'/%3E%3Crect x='641' y='253' width='100' height='205' rx='50' fill='white'/%3E%3Cpath d='M317 620Q512 652 707 620C695 775 618 842 512 842C406 842 329 775 317 620Z' fill='white'/%3E%3C/svg%3E" />
 
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
 <style>
 /* ============================================================
    Deficit — CalorieDefic.it landing page  (inlined)
@@ -450,6 +451,91 @@ a{color:inherit; text-decoration:none}
   </div>
 </footer>
 
-<script src="app.js?v=3"></script>
+<script>
+/* ============================================================
+   Deficit landing — interactions (inlined)
+   ============================================================ */
+(function () {
+  'use strict';
+  var prefersReduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* current year */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* sticky nav state (kept for compatibility; nav is styled solid always) */
+  var nav = document.getElementById('nav');
+  function onScrollNav() {
+    if (!nav) return;
+    if (window.scrollY > 24) nav.classList.add('is-solid');
+    else nav.classList.remove('is-solid');
+  }
+  onScrollNav();
+  window.addEventListener('scroll', onScrollNav, { passive: true });
+
+  /* scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* mascot: state swap + auto-cycle */
+  var big = document.getElementById('mascotBig');
+  var labelEl = document.getElementById('mascotLabel');
+  var numEl = document.getElementById('mascotNum');
+  var noteEl = document.getElementById('mascotNote');
+  var states = Array.prototype.slice.call(document.querySelectorAll('.state'));
+  var stageWrap = document.querySelector('.mascot__stage');
+  var autoTimer = null, userTouched = false, idx = 0;
+
+  function applyState(btn, animate) {
+    if (!btn || !big) return;
+    states.forEach(function (b) {
+      var on = b === btn;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    var src = btn.getAttribute('data-src');
+    if (animate && !prefersReduced) {
+      big.style.opacity = '0';
+      setTimeout(function () {
+        big.src = src; big.style.opacity = '1';
+        big.style.animation = 'none'; void big.offsetWidth; big.style.animation = '';
+      }, 110);
+    } else { big.src = src; }
+    big.alt = 'Deficit mascot — ' + (btn.querySelector('span') ? btn.querySelector('span').textContent : '');
+    if (labelEl) labelEl.textContent = btn.getAttribute('data-label');
+    if (numEl) numEl.textContent = btn.getAttribute('data-num');
+    if (noteEl) noteEl.textContent = btn.getAttribute('data-note');
+  }
+  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+  function startAuto() {
+    if (prefersReduced || userTouched || states.length === 0) return;
+    stopAuto();
+    autoTimer = setInterval(function () { idx = (idx + 1) % states.length; applyState(states[idx], true); }, 2200);
+  }
+  states.forEach(function (btn, i) {
+    var pick = function () { userTouched = true; stopAuto(); idx = i; applyState(btn, true); };
+    btn.addEventListener('click', pick);
+    btn.addEventListener('mouseenter', function () { if (userTouched) return; stopAuto(); applyState(btn, true); idx = i; });
+    btn.addEventListener('mouseleave', function () { if (!userTouched) startAuto(); });
+    btn.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+  });
+  if (stageWrap && 'IntersectionObserver' in window) {
+    var visIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) startAuto(); else stopAuto(); });
+    }, { threshold: 0.4 });
+    visIO.observe(stageWrap);
+  } else { startAuto(); }
+})();
+</script>
 </body>
 </html>
