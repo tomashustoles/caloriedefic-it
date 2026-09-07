@@ -178,6 +178,47 @@ a{color:inherit; text-decoration:none}
        No mask, no crop — the PNG already fades to transparent. --- */
 .shot{ display:flex; justify-content:center; align-items:center; }
 .shot img{ width:auto; max-width:100%; max-height:min(74vh, 600px); border-radius:32px; }
+/* ============================================================ MEALS ============================================================ */
+.meals{ background:var(--paper); padding:clamp(64px,12vw,120px) 0; }
+.meals__head{
+  max-width:var(--maxw); margin:0 auto clamp(28px,5vw,52px);
+  padding:0 var(--pad); text-align:center;
+}
+.meals .eyebrow{ color:var(--blue) }
+.meals__title{
+  font-size:clamp(1.9rem,5.5vw,3rem); font-weight:600; letter-spacing:-.025em;
+  line-height:1.06; margin:0 0 14px;
+}
+.meals__lede{ color:var(--muted); font-size:1.08rem; margin:0 auto; max-width:44ch }
+/* mobile: swipeable track — desktop: five across */
+.meals__track{
+  display:grid; grid-auto-flow:column; grid-auto-columns:minmax(190px,58vw);
+  gap:clamp(10px,3vw,22px); margin:0; padding:0 var(--pad) 10px;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.meals__track::-webkit-scrollbar{ display:none }
+.meal{ margin:0; text-align:center; scroll-snap-align:center }
+.meal img{
+  width:100%; height:auto; margin:0 auto;
+  transition:transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.meal:hover img{ transform:translateY(-6px) }
+.meal figcaption{
+  margin-top:8px; color:var(--ink); font-weight:600; letter-spacing:-.015em;
+  font-size:clamp(1rem,2.6vw,1.2rem); line-height:1.2;
+}
+@media (min-width:900px){
+  .meals__track{
+    grid-auto-flow:row; grid-auto-columns:auto; grid-template-columns:repeat(5,1fr);
+    max-width:var(--maxw); margin:0 auto; padding:0 var(--pad);
+    overflow:visible; scroll-snap-type:none; gap:clamp(8px,1.8vw,20px);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .meal img{ transition:none }
+  .meal:hover img{ transform:none }
+}
 /* ============================================================ CLOSING CTA ============================================================ */
 .close{
   position:relative; overflow:hidden; background:var(--blue); color:#fff;
@@ -287,6 +328,48 @@ a{color:inherit; text-decoration:none}
     </div>
   </section>
 
+
+  <!-- ================= MEALS ================= -->
+  <section class="meals" aria-labelledby="meals-title">
+    <div class="meals__head reveal">
+      <p class="eyebrow">From breakfast to late night</p>
+      <h2 class="meals__title" id="meals-title">Track all your meals</h2>
+      <p class="meals__lede">A banana or a whole pizza. Snap it, get the number, and the day adds itself up.</p>
+    </div>
+
+    <div class="meals__track reveal">
+      <figure class="meal">
+        <img src="Assets/meals/meal-9A.png"
+             srcset="Assets/meals/meal-9A.png 1x, Assets/meals/meal-9A@2x.png 2x"
+             alt="Poached egg breakfast logged at 507 kcal" width="260" height="562" loading="lazy" decoding="async" />
+        <figcaption>Log your<br>poached egg</figcaption>
+      </figure>
+      <figure class="meal">
+        <img src="Assets/meals/meal-9B.png"
+             srcset="Assets/meals/meal-9B.png 1x, Assets/meals/meal-9B@2x.png 2x"
+             alt="Banana logged at 100 kcal" width="260" height="562" loading="lazy" decoding="async" />
+        <figcaption>Log your<br>quick banana</figcaption>
+      </figure>
+      <figure class="meal">
+        <img src="Assets/meals/meal-9C.png"
+             srcset="Assets/meals/meal-9C.png 1x, Assets/meals/meal-9C@2x.png 2x"
+             alt="Shrimp ramen logged at 470 kcal" width="260" height="562" loading="lazy" decoding="async" />
+        <figcaption>Log your<br>shrimp ramen</figcaption>
+      </figure>
+      <figure class="meal">
+        <img src="Assets/meals/meal-9D.png"
+             srcset="Assets/meals/meal-9D.png 1x, Assets/meals/meal-9D@2x.png 2x"
+             alt="Tofu salad bowl logged at 347 kcal" width="260" height="562" loading="lazy" decoding="async" />
+        <figcaption>Log your<br>tofu bowl</figcaption>
+      </figure>
+      <figure class="meal">
+        <img src="Assets/meals/meal-9E.png"
+             srcset="Assets/meals/meal-9E.png 1x, Assets/meals/meal-9E@2x.png 2x"
+             alt="Veggie pizza with wine logged at 1425 kcal" width="260" height="562" loading="lazy" decoding="async" />
+        <figcaption>Log your<br>veggie pizza</figcaption>
+      </figure>
+    </div>
+  </section>
 
   <!-- ================= MASCOT MOMENT ================= -->
   <section class="mascot" aria-labelledby="mascot-title">
