@@ -219,6 +219,54 @@ a{color:inherit; text-decoration:none}
   .meal img{ transition:none }
   .meal:hover img{ transform:none }
 }
+/* ============================================================ FORMULA ============================================================ */
+.formula{ background:var(--paper); padding:clamp(64px,12vw,120px) 0; }
+.formula__head{
+  max-width:var(--maxw); margin:0 auto clamp(36px,7vw,64px);
+  padding:0 var(--pad); text-align:center;
+}
+.formula .eyebrow{ color:var(--blue) }
+.formula__title{
+  font-size:clamp(1.9rem,5.5vw,3rem); font-weight:600; letter-spacing:-.025em;
+  line-height:1.06; margin:0 0 14px;
+}
+.formula__lede{ color:var(--muted); font-size:1.08rem; margin:0 auto; max-width:46ch }
+.formula__stage{ max-width:760px; margin:0 auto; padding:0 var(--pad); }
+.formula__eq{
+  display:flex; flex-direction:column; align-items:center; gap:20px;
+  background:var(--paper-2); border:1px solid var(--line); border-radius:32px;
+  padding:clamp(28px,5vw,44px) clamp(20px,5vw,40px);
+}
+.formula__term{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  background:#fff; border:1px solid var(--line); border-radius:24px;
+  padding:22px 26px; min-width:190px;
+}
+.formula__icon{
+  width:52px; height:52px; border-radius:50%; margin-bottom:12px;
+  display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+}
+.formula__icon svg{ width:26px; height:26px; display:block }
+.formula__icon--health{ background:linear-gradient(135deg,#ff7a92,#ff2d55); box-shadow:0 8px 18px rgba(255,45,85,.26); }
+.formula__icon--meal{ background:var(--blue); box-shadow:0 8px 18px rgba(26,54,214,.24); }
+.formula__num{
+  font-size:clamp(1.9rem,5vw,2.4rem); font-weight:700; letter-spacing:-.03em;
+  color:var(--ink); line-height:1;
+}
+.formula__label{
+  display:block; font-size:.78rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-top:8px;
+}
+.formula__source{ display:block; font-size:.82rem; color:var(--muted); margin-top:4px; }
+.formula__op{ font-size:clamp(1.6rem,4vw,2rem); font-weight:300; color:var(--muted); line-height:1; }
+.formula__term--result{
+  background:var(--blue); border-color:var(--blue);
+}
+.formula__term--result .formula__num{ color:#fff; font-size:clamp(2.4rem,7vw,3.2rem); }
+.formula__term--result .formula__label{ color:rgba(255,255,255,.75); }
+@media (prefers-reduced-motion:reduce){
+  .formula__term{ transition:none }
+}
 /* ============================================================ CLOSING CTA ============================================================ */
 .close{
   position:relative; overflow:hidden; background:var(--blue); color:#fff;
@@ -276,6 +324,7 @@ a{color:inherit; text-decoration:none}
   .feature--reverse .feature__text{ order:2; padding-right:0; padding-left:20px }
   .feature--reverse .shot{ order:1 }
   .shot img{ max-height:min(78vh, 660px) }
+  .formula__eq{ flex-direction:row; justify-content:center; }
 }
 @media (min-width:1024px){
   .hero__title{ font-size:clamp(3.4rem,5.6vw,5rem) }
@@ -368,6 +417,53 @@ a{color:inherit; text-decoration:none}
              alt="Veggie pizza with wine logged at 1425 kcal" width="260" height="562" loading="lazy" decoding="async" />
         <figcaption>Log your<br>veggie pizza</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- ================= FORMULA ================= -->
+  <section class="formula" aria-labelledby="formula-title">
+    <div class="formula__head reveal">
+      <p class="eyebrow">The math other apps skip</p>
+      <h2 class="formula__title" id="formula-title">Burned minus eaten.</h2>
+      <p class="formula__lede">Most trackers stop at what you ate. Deficit pulls your burn straight from Apple Health, subtracts what you logged, and hands you the one number that actually decides if you lose weight.</p>
+    </div>
+
+    <div class="formula__stage reveal">
+      <div class="formula__eq">
+        <div class="formula__term">
+          <span class="formula__icon formula__icon--health" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 40 C11 30.5 5 22.5 5 15 C5 8.7 9.9 4 15.7 4 C19.6 4 22.6 6.2 24 9.1 C25.4 6.2 28.4 4 32.3 4 C38.1 4 43 8.7 43 15 C43 22.5 37 30.5 24 40 Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+              <polyline points="10,21 16,21 19,14 24,29 28,18 31,21 38,21" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="formula__num">2,650</span>
+          <span class="formula__label">Burned</span>
+          <span class="formula__source">via Apple Health</span>
+        </div>
+
+        <span class="formula__op" aria-hidden="true">&minus;</span>
+
+        <div class="formula__term">
+          <span class="formula__icon formula__icon--meal" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 4 V19 M10 4 V14 C10 16.5 12 18 14 18 C16 18 18 16.5 18 14 V4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 18 V44" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M34 4 C29 4 26 9 26 15 C26 19 28.5 21.5 32 22 V44" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="formula__num">1,812</span>
+          <span class="formula__label">Eaten</span>
+          <span class="formula__source">logged in Deficit</span>
+        </div>
+
+        <span class="formula__op" aria-hidden="true">=</span>
+
+        <div class="formula__term formula__term--result">
+          <span class="formula__num">-838</span>
+          <span class="formula__label">Your deficit</span>
+        </div>
+      </div>
     </div>
   </section>
 
