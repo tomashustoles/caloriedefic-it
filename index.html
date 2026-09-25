@@ -231,24 +231,26 @@ a{color:inherit; text-decoration:none}
   line-height:1.06; margin:0 0 14px;
 }
 .formula__lede{ color:var(--muted); font-size:1.08rem; margin:0 auto; max-width:46ch }
-.formula__stage{ max-width:760px; margin:0 auto; padding:0 var(--pad); }
+.formula__stage{ max-width:900px; margin:0 auto; padding:0 var(--pad); }
 .formula__eq{
-  display:flex; flex-direction:column; align-items:center; gap:20px;
-  background:var(--paper-2); border:1px solid var(--line); border-radius:32px;
+  display:flex; flex-direction:column; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:20px; background:#fff; border:1px solid var(--line); border-radius:32px;
   padding:clamp(28px,5vw,44px) clamp(20px,5vw,40px);
+  box-shadow:0 8px 20px rgba(26,54,214,.14);
 }
 .formula__term{
   display:flex; flex-direction:column; align-items:center; text-align:center;
-  background:#fff; border:1px solid var(--line); border-radius:24px;
-  padding:22px 26px; min-width:190px;
+  background:var(--paper-2); border:1px solid var(--line); border-radius:24px;
+  padding:22px 26px; min-width:180px;
 }
 .formula__icon{
-  width:52px; height:52px; border-radius:50%; margin-bottom:12px;
+  width:56px; height:56px; margin-bottom:12px;
   display:flex; align-items:center; justify-content:center; flex:0 0 auto;
 }
-.formula__icon svg{ width:26px; height:26px; display:block }
-.formula__icon--health{ background:linear-gradient(135deg,#ff7a92,#ff2d55); box-shadow:0 8px 18px rgba(255,45,85,.26); }
-.formula__icon--meal{ background:var(--blue); box-shadow:0 8px 18px rgba(26,54,214,.24); }
+.formula__icon svg{ width:100%; height:100%; display:block }
+.formula__icon--health{ filter:drop-shadow(0 6px 12px rgba(255,45,45,.32)); }
+.formula__icon--health svg{ width:86%; height:86%; }
+.formula__icon--deficit{ border-radius:16px; overflow:hidden; box-shadow:0 8px 18px rgba(26,54,214,.24); }
 .formula__num{
   font-size:clamp(1.9rem,5vw,2.4rem); font-weight:700; letter-spacing:-.03em;
   color:var(--ink); line-height:1;
@@ -324,7 +326,7 @@ a{color:inherit; text-decoration:none}
   .feature--reverse .feature__text{ order:2; padding-right:0; padding-left:20px }
   .feature--reverse .shot{ order:1 }
   .shot img{ max-height:min(78vh, 660px) }
-  .formula__eq{ flex-direction:row; justify-content:center; }
+  .formula__eq{ flex-direction:row; flex-wrap:wrap; justify-content:center; }
 }
 @media (min-width:1024px){
   .hero__title{ font-size:clamp(3.4rem,5.6vw,5rem) }
@@ -432,9 +434,14 @@ a{color:inherit; text-decoration:none}
       <div class="formula__eq">
         <div class="formula__term">
           <span class="formula__icon formula__icon--health" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 40 C11 30.5 5 22.5 5 15 C5 8.7 9.9 4 15.7 4 C19.6 4 22.6 6.2 24 9.1 C25.4 6.2 28.4 4 32.3 4 C38.1 4 43 8.7 43 15 C43 22.5 37 30.5 24 40 Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
-              <polyline points="10,21 16,21 19,14 24,29 28,18 31,21 38,21" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="healthGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#FF7AA2"/>
+                  <stop offset="1" stop-color="#FF2D2D"/>
+                </linearGradient>
+              </defs>
+              <path d="M16 28.4 C16 28.4 1 18.6 1 9.2 C1 4.3 4.9 0.9 9.2 0.9 C12 0.9 14.4 2.5 16 5 C17.6 2.5 20 0.9 22.8 0.9 C27.1 0.9 31 4.3 31 9.2 C31 18.6 16 28.4 16 28.4 Z" fill="url(#healthGrad)"/>
             </svg>
           </span>
           <span class="formula__num">2,650</span>
@@ -445,11 +452,12 @@ a{color:inherit; text-decoration:none}
         <span class="formula__op" aria-hidden="true">&minus;</span>
 
         <div class="formula__term">
-          <span class="formula__icon formula__icon--meal" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 4 V19 M10 4 V14 C10 16.5 12 18 14 18 C16 18 18 16.5 18 14 V4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M14 18 V44" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M34 4 C29 4 26 9 26 15 C26 19 28.5 21.5 32 22 V44" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <span class="formula__icon formula__icon--deficit" aria-hidden="true">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+              <rect width="1024" height="1024" fill="#1A36D6"/>
+              <rect x="283" y="253" width="100" height="205" rx="50" fill="#fff"/>
+              <rect x="641" y="253" width="100" height="205" rx="50" fill="#fff"/>
+              <path d="M317 620Q512 652 707 620C695 775 618 842 512 842C406 842 329 775 317 620Z" fill="#fff"/>
             </svg>
           </span>
           <span class="formula__num">1,812</span>
