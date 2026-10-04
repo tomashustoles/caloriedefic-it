@@ -103,6 +103,7 @@ a{color:inherit; text-decoration:none}
 .hero__inner{
   position:relative; z-index:2; max-width:var(--maxw); margin:0 auto;
   padding:104px var(--pad) 0; display:grid; gap:24px;
+  grid-template-rows:auto 1fr; min-height:100vh; min-height:100svh;
 }
 .hero__title{
   font-size:clamp(2.6rem, 9vw, 4.6rem); line-height:1.02; letter-spacing:-.03em;
@@ -113,7 +114,7 @@ a{color:inherit; text-decoration:none}
   color:rgba(255,255,255,.82); max-width:30ch; margin:0 0 26px;
 }
 .hero__meta{ font-size:.85rem; color:rgba(255,255,255,.6); margin:16px 0 0; font-weight:500; }
-.hero__art{ position:relative; margin:4px calc(var(--pad) * -1) -6px; display:flex; justify-content:center; }
+.hero__art{ position:relative; margin:4px calc(var(--pad) * -1) -6px; display:flex; justify-content:center; align-items:flex-end; }
 .hero__art img{
   width:auto; height:auto; max-width:118%;
   filter:drop-shadow(0 30px 55px rgba(0,0,0,.30)); will-change:transform;
@@ -315,8 +316,8 @@ a{color:inherit; text-decoration:none}
 @media (min-width:720px){
   .badge-link--nav{ display:inline-block }
   .hero__inner{
-    grid-template-columns:1.02fr .98fr; align-items:center;
-    padding:120px var(--pad) 0; min-height:min(90vh,820px);
+    grid-template-columns:1.02fr .98fr; grid-template-rows:none; align-items:center;
+    padding:120px var(--pad) 0;
   }
   .hero__copy{ padding-bottom:24px }
   .hero__art{
@@ -654,15 +655,14 @@ a{color:inherit; text-decoration:none}
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* nav: hidden on first load, slides in once the user scrolls past the first viewport */
+  /* nav: hidden on first load, slides in as soon as the user starts scrolling */
   var nav = document.getElementById('nav');
   function onScrollNav() {
     if (!nav) return;
-    nav.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+    nav.classList.toggle('is-visible', window.scrollY > 0);
   }
   onScrollNav();
   window.addEventListener('scroll', onScrollNav, { passive: true });
-  window.addEventListener('resize', onScrollNav, { passive: true });
 
   /* scroll reveal */
   var reveals = document.querySelectorAll('.reveal');
