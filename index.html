@@ -372,6 +372,7 @@ a{color:inherit; text-decoration:none}
 .timeline__day{ display:block; font-size:.78rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--pr-muted); margin-bottom:4px }
 .timeline__step--today .timeline__day{ color:var(--pr-ink) }
 .timeline__text{ margin:0; color:var(--pr-soft); font-size:1rem; max-width:30ch }
+.trial__note{ margin:clamp(20px,4vw,32px) 0 0; text-align:center; color:var(--pr-muted); font-size:.92rem }
 
 /* --- reassurance row --- */
 .assure{
@@ -752,7 +753,7 @@ a{color:inherit; text-decoration:none}
       <div class="pricing__head reveal">
         <p class="eyebrow">Pricing</p>
         <h2 class="pricing__title" id="pricing-title">Simple pricing.<br>No surprises.</h2>
-        <p class="pricing__sub">Try Deficit.today free for 3 days with the yearly plan. Cancel anytime before the trial ends and you won't pay a cent.</p>
+        <p class="pricing__sub">Every plan starts with a free trial: 7 days on yearly, 3 days on monthly. Cancel anytime before the trial ends and you won't pay a cent.</p>
         <p class="pricing__body">Every plan unlocks everything: unlimited AI photo scans, full macro breakdowns, streaks and challenges, widgets, and Apple Health sync. You only choose how you pay.</p>
       </div>
 
@@ -764,11 +765,11 @@ a{color:inherit; text-decoration:none}
             <span class="plan__badge">Best value</span>
           </div>
           <p class="plan__price"><span class="plan__amount">€34.99</span><span class="plan__per">/ year</span></p>
-          <p class="plan__note">3 days free, then €34.99 / year</p>
+          <p class="plan__note">7 days free, then €34.99 / year</p>
           <dl class="plan__rows">
             <div class="plan__row"><dt>Per month</dt><dd>≈ €2.92 / month</dd></div>
             <div class="plan__row"><dt>Savings</dt><dd>Save 51% vs monthly</dd></div>
-            <div class="plan__row"><dt>Free trial</dt><dd>3 days free</dd></div>
+            <div class="plan__row"><dt>Free trial</dt><dd>7 days free</dd></div>
             <div class="plan__row"><dt>Billed</dt><dd>Once a year, after trial</dd></div>
             <div class="plan__row"><dt>Cancel</dt><dd>Anytime in App Store settings</dd></div>
             <div class="plan__row"><dt>All features</dt><dd><span class="plan__check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Included</span></dd></div>
@@ -781,12 +782,12 @@ a{color:inherit; text-decoration:none}
             <h3 class="plan__name" id="plan-monthly">Monthly</h3>
           </div>
           <p class="plan__price"><span class="plan__amount">€5.99</span><span class="plan__per">/ month</span></p>
-          <p class="plan__note">Billed monthly, no trial</p>
+          <p class="plan__note">3 days free, then €5.99 / month</p>
           <dl class="plan__rows">
             <div class="plan__row"><dt>Per month</dt><dd>€5.99 / month</dd></div>
             <div class="plan__row"><dt>Savings</dt><dd class="is-empty">—</dd></div>
-            <div class="plan__row"><dt>Free trial</dt><dd>No trial</dd></div>
-            <div class="plan__row"><dt>Billed</dt><dd>Every month</dd></div>
+            <div class="plan__row"><dt>Free trial</dt><dd>3 days free</dd></div>
+            <div class="plan__row"><dt>Billed</dt><dd>Every month, after trial</dd></div>
             <div class="plan__row"><dt>Cancel</dt><dd>Anytime in App Store settings</dd></div>
             <div class="plan__row"><dt>All features</dt><dd><span class="plan__check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Included</span></dd></div>
           </dl>
@@ -807,15 +808,16 @@ a{color:inherit; text-decoration:none}
           </li>
           <li class="timeline__step">
             <span class="timeline__node" aria-hidden="true"></span>
-            <span class="timeline__day">Day 2</span>
+            <span class="timeline__day">Day 6</span>
             <p class="timeline__text">We'll remind you that your trial is ending soon.</p>
           </li>
           <li class="timeline__step">
             <span class="timeline__node" aria-hidden="true"></span>
-            <span class="timeline__day">Day 3</span>
+            <span class="timeline__day">Day 7</span>
             <p class="timeline__text">Your yearly plan starts at €34.99, unless you cancel before then.</p>
           </li>
         </ol>
+        <p class="trial__note">On the monthly plan it's the same, over 3 days: reminder on day 2, then €5.99 / month from day 3.</p>
       </div>
 
       <ul class="assure reveal">
