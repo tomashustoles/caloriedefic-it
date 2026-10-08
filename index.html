@@ -143,7 +143,7 @@ a{color:inherit; text-decoration:none}
 }
 .mascot__bigwrap{ flex:0 0 auto; width:clamp(120px,30vw,184px) }
 .mascot__bigwrap img{
-  width:100%; filter:drop-shadow(0 16px 26px rgba(26,54,214,.22));
+  width:100%; height:auto; aspect-ratio:1; filter:drop-shadow(0 16px 26px rgba(26,54,214,.22));
   animation:pop .45s cubic-bezier(.2,1.4,.4,1);
 }
 #mascotBig{ transition:opacity .12s ease }
@@ -165,7 +165,7 @@ a{color:inherit; text-decoration:none}
   color:var(--muted);
   transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease, color .18s ease;
 }
-.state img{ width:clamp(44px,9vw,58px) }
+.state img{ width:clamp(44px,9vw,58px); height:auto; aspect-ratio:1 }
 .state:hover{ transform:translateY(-3px) }
 .state.is-active{ border-color:var(--blue); color:var(--blue); box-shadow:0 8px 20px rgba(26,54,214,.14); }
 @keyframes pop{ from{ transform:scale(.86) } to{ transform:scale(1) } }
